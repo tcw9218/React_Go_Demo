@@ -78,12 +78,11 @@ func getTodoById(id int) (*Todo, error) {
 
 func main() {
 	router := gin.Default()
-	router.Use(cors.Default())
-	// router.Use(cors.New(cors.Config{
-	// 	AllowOrigins: []string{"http://localhost:3000"},
-	// 	AllowMethods: []string{"PUT", "PATCH"},
-	// 	AllowHeaders: []string{"Origin,Content-Type,Accept"},
-	// }))
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:4000"}
+	config.AllowHeaders = []string{"Origin, Content-Type, Accept"}
+
+	router.Use(cors.New(config))
 	router.GET("/todos", getTodos)
 	router.GET("/todos/:id", getTodo)
 	router.POST("/todos/:id/done", completeTodo)
