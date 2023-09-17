@@ -1,7 +1,7 @@
-import { type Shoes } from '../constants'
+import { shoes } from '../constants'
 
 interface BikeCardProps {
-	shoe: Shoes
+	shoe: typeof shoes[number]
 	changeBigshoeImg: (args: string) => void
 	bigShoeImage: string
 }

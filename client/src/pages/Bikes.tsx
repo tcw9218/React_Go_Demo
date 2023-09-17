@@ -42,7 +42,7 @@ const Bikes: React.FC = () => {
 					width={510}
 					height={400}
 					className="relative z-10 object-contain"/>
-				<div className="flex gap-4 absolute sm:gap-6 bottom-2 sm:left-[10%]">
+				<div className="flex gap-4 absolute sm:gap-6 -bottom-[5%] sm:left-[10%]">
 					{shoes.map((shoe, index) => (
 						<div key = {index}>
 							<BikeCard

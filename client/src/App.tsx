@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import useSWR from 'swr'
+// import { useState } from 'react'
+// import useSWR from 'swr'
 import Nav from './components/Nav'
 import Bikes from './pages/Bikes'
-
-import { Box } from '@mantine/core'
-import { AddTodo } from './pages/AddTodo'
+import { PopoularProducts } from '@/pages/PopularProducts'
+import { Offer } from "@/pages/Offer"
+// import { Box } from '@mantine/core'
+// import { AddTodo } from './pages/AddTodo'
 export const ENDPOINT = 'http://localhost:3000'
 
-const fetcher = async (url: string) => await fetch(`${ENDPOINT}/${url}`).then(async (r) => await r.json())
+// const fetcher = async (url: string) => await fetch(`${ENDPOINT}/${url}`).then(async (r) => await r.json())
 
 const App = () => {
 	// const {data, isLoading, error} = useSWR('todos', fetcher)
@@ -21,20 +22,19 @@ const App = () => {
 				<Bikes />
 			</section>
 			<section className='padding'>
-  		<PopoularProducts />
+  			<PopoularProducts />
 			</section>
 			<section className='padding'>
-      Offer
+      			<Offer />
 			</section>
-
 			<section className='bg-pale-blue padding'>
-      CustomerReviews
+      			CustomerReviews
 			</section>
 			<section className='padding-x sm:py-32  py-16 w-full'>
-      Subscribe
+      			Subscribe
 			</section>
 			<section className='bg-black padding-x padding-t pb-8'>
-      Footer
+      			Footer
 			</section>
 
 			{/* <Box>

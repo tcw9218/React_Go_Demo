@@ -7,10 +7,7 @@ export const navLinks = [
 	{ href: '#products', label: 'Products' },
 	{ href: '#contact-us', label: 'Contact Us' }
 ]
-export interface Shoes {
-	thumbnail: string
-	bigShoe: string
-}
+
 export const shoes = [
 	{
 		thumbnail: thumbnailShoe1,
@@ -31,6 +28,7 @@ export const statistics = [
 	{ value: '500+', label: 'Shops' },
 	{ value: '250k+', label: 'Customers' }
 ]
+
 
 export const products = [
 	{
