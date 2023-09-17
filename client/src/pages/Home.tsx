@@ -1,13 +1,10 @@
+const Home: React.FC = () => {
+	return (
+		<section
+			id="home"
+			className="w-full">
 
-const Home = () => {
-    return (
-       <section
-        id="home"
-        className="w-full">
-
-       </section>
-    )
-
-
+		</section>
+	)
 }
 export default Home

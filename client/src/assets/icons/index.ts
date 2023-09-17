@@ -12,16 +12,16 @@ import truckFast from './truck-fast.svg'
 import twitter from './twitter.svg'
 
 export {
-    arrowRight,
-    cheveronRight,
-    chevronLeft,
-    copyrightSign,
-    facebook,
-    hamburger,
-    instagram,
-    support,
-    shieldTick,
-    star,
-    truckFast,
-    twitter
+	arrowRight,
+	cheveronRight,
+	chevronLeft,
+	copyrightSign,
+	facebook,
+	hamburger,
+	instagram,
+	support,
+	shieldTick,
+	star,
+	truckFast,
+	twitter
 }

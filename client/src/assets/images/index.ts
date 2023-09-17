@@ -22,25 +22,25 @@ import thumbnailShoe2 from './thumbnail-shoe2.svg'
 import thumbnailShoe3 from './thumbnail-shoe3.svg'
 
 export {
-    bigShoe1,
-    bigShoe2,
-    bigShoe3,
+	bigShoe1,
+	bigShoe2,
+	bigShoe3,
 
-    customer1,
-    customer2,
+	customer1,
+	customer2,
 
-    footerLogo,
-    headerLogo,
+	footerLogo,
+	headerLogo,
 
-    offer,
-    shoe4,
-    shoe5,
-    shoe6,
-    shoe7,
-    shoe8,
+	offer,
+	shoe4,
+	shoe5,
+	shoe6,
+	shoe7,
+	shoe8,
 
-    thumbnailBackground,
-    thumbnailShoe1,
-    thumbnailShoe2,
-    thumbnailShoe3
+	thumbnailBackground,
+	thumbnailShoe1,
+	thumbnailShoe2,
+	thumbnailShoe3
 }
