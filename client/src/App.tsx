@@ -3,7 +3,10 @@
 import Nav from './components/Nav'
 import Bikes from './pages/Bikes'
 import { PopoularProducts } from '@/pages/PopularProducts'
+import { CustomerReviews } from '@/pages/CustomerReviews'
 import { Offer } from "@/pages/Offer"
+import { Subscribe } from './pages/Subscribe'
+import { Footer } from './pages/Footer'
 // import { Box } from '@mantine/core'
 // import { AddTodo } from './pages/AddTodo'
 export const ENDPOINT = 'http://localhost:3000'
@@ -28,13 +31,13 @@ const App = () => {
       			<Offer />
 			</section>
 			<section className='bg-pale-blue padding'>
-      			CustomerReviews
+      			<CustomerReviews />
 			</section>
 			<section className='padding-x sm:py-32  py-16 w-full'>
-      			Subscribe
+      			<Subscribe />
 			</section>
 			<section className='bg-black padding-x padding-t pb-8'>
-      			Footer
+      			<Footer />
 			</section>
 
 			{/* <Box>

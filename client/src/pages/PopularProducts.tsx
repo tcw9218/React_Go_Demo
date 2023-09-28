@@ -1,5 +1,6 @@
 import 	{ products } from "@/constants"
 import { PopularProductCard } from "@/components/PopularProductCard"
+
 export const PopoularProducts = () => {
 	return (
 
