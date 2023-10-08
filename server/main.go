@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"todo_application/database"
 )
 
 type Todo struct {
@@ -77,6 +78,7 @@ func getTodoById(id int) (*Todo, error) {
 }
 
 func main() {
+	database.Connect()
 	router := gin.Default()
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:4000"}
