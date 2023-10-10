@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/dgrijalva/jwt-go/v4"
 	"github.com/gin-gonic/gin"
 )
 
@@ -78,6 +79,8 @@ func getTodoById(id int) (*Todo, error) {
 	return nil, errors.New("no specfic todo ID")
 }
 
+const mySigningKey = "SecretJwtKey"
+
 func Register(c *gin.Context) {
 	var data map[string]string
 
@@ -120,5 +123,16 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, "incorrect password")
 		return
 	}
-	c.JSON(http.StatusOK, user)
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
+		Issuer:    strconv.Itoa(int(user.ID)),
+		ExpiresAt: jwt.NewTime(3600 * 24),
+	})
+
+	ss, err := token.SignedString([]byte(mySigningKey))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, "could not logiin")
+		return
+	}
+	c.JSON(http.StatusOK, ss)
 }
