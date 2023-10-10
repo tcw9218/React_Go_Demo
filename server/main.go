@@ -17,5 +17,5 @@ func main() {
 
 	router.Use(cors.New(config))
 	routes.Setup(router)
-	router.Run("localhost:3000")
+	router.Run("localhost:8000")
 }

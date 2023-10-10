@@ -78,21 +78,47 @@ func getTodoById(id int) (*Todo, error) {
 	return nil, errors.New("no specfic todo ID")
 }
 
-func Register(context *gin.Context) {
+func Register(c *gin.Context) {
 	var data map[string]string
 
-	if err := context.ShouldBindJSON(&data); err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"Register error": err.Error()})
 		return
 	}
-	password, _ := bcrypt.GenerateFromPassword([]byte(data["password"]), 14)
-
+	password, err := bcrypt.GenerateFromPassword([]byte(data["password"]), 14)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
+		return
+	}
 	user := models.User{
 		Name:     data["name"],
 		Email:    data["email"],
 		Password: password,
 	}
-
 	database.DB.Create(&user)
-	context.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, user)
+}
+
+func Login(c *gin.Context) {
+	var data map[string]string
+
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"login error": err.Error()})
+		return
+	}
+
+	var user models.User
+
+	database.DB.Where("email = ?", data["email"]).First(&user)
+
+	if user.ID == 0 {
+		c.JSON(http.StatusNotFound, "usr not found")
+		return
+	}
+
+	if err := bcrypt.CompareHashAndPassword(user.Password, []byte(data["password"])); err != nil {
+		c.JSON(http.StatusBadRequest, "incorrect password")
+		return
+	}
+	c.JSON(http.StatusOK, user)
 }
