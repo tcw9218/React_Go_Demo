@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"application/database"
+	"application/models"
 	"errors"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"strconv"
 
@@ -73,4 +76,23 @@ func getTodoById(id int) (*Todo, error) {
 		}
 	}
 	return nil, errors.New("no specfic todo ID")
+}
+
+func Register(context *gin.Context) {
+	var data map[string]string
+
+	if err := context.ShouldBindJSON(&data); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	password, _ := bcrypt.GenerateFromPassword([]byte(data["password"]), 14)
+
+	user := models.User{
+		Name:     data["name"],
+		Email:    data["email"],
+		Password: password,
+	}
+
+	database.DB.Create(&user)
+	context.JSON(http.StatusOK, user)
 }
