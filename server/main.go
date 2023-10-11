@@ -10,12 +10,16 @@ import (
 
 func main() {
 	database.Connect()
-	router := gin.Default()
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:4000"}
-	config.AllowHeaders = []string{"Origin, Content-Type, Accept"}
-
-	router.Use(cors.New(config))
-	routes.Setup(router)
-	router.Run("localhost:8000")
+	engine := gin.Default()
+	config := cors.Config{
+		AllowOrigins:     []string{"http://localhost:4000"},
+		AllowMethods:     []string{"PUT", "PATCH"},
+		AllowHeaders:     []string{"Origin, Content-Type, Accept"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}
+	engine.SetTrustedProxies(nil)
+	engine.Use(cors.New(config))
+	routes.Setup(engine)
+	engine.Run("localhost:8000")
 }

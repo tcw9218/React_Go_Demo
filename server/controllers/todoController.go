@@ -4,9 +4,10 @@ import (
 	"application/database"
 	"application/models"
 	"errors"
-	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"strconv"
+
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/dgrijalva/jwt-go/v4"
 	"github.com/gin-gonic/gin"
@@ -134,5 +135,9 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, "could not logiin")
 		return
 	}
-	c.JSON(http.StatusOK, ss)
+
+	c.SetCookie("jwt", ss, 3600*24, "/", "localhost", true, true)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "success",
+	})
 }
