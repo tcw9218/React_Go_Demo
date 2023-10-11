@@ -12,4 +12,5 @@ func Setup(router *gin.Engine) {
 	router.POST("/todos", controllers.AddTodo)
 	router.POST("/api/register", controllers.Register)
 	router.POST("/api/login", controllers.Login)
+	router.GET("/api/user", controllers.User)
 }

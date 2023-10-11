@@ -4,8 +4,10 @@ import (
 	"application/database"
 	"application/models"
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 
 	"golang.org/x/crypto/bcrypt"
 
@@ -125,9 +127,10 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Issuer:    strconv.Itoa(int(user.ID)),
-		ExpiresAt: jwt.NewTime(3600 * 24),
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"user_id": user.ID,
+		"iat":     time.Now(),
+		"exp":     time.Now().Add(time.Hour * 24).Unix(),
 	})
 
 	ss, err := token.SignedString([]byte(mySigningKey))
@@ -140,4 +143,42 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success",
 	})
+}
+
+func User(c *gin.Context) {
+	cookie, err := c.Cookie("jwt")
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		c.Abort()
+		return
+	}
+
+	token, err := jwt.Parse(cookie, func(token *jwt.Token) (interface{}, error) {
+		// Check the signing method, which should match the one used during token creation.
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method")
+		}
+
+		return []byte(mySigningKey), nil
+	})
+
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "Token Expired")
+	}
+
+	// Check if the token is valid.
+	var user models.User
+
+	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		// You can access the user's information from the claims.
+		fmt.Println("claims", claims["user_id"])
+		database.DB.Where("id = ?", claims["user_id"]).First(&user)
+
+	} else {
+		fmt.Println("ok", ok)
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		c.Abort()
+		return
+	}
+	c.JSON(http.StatusOK, user)
 }
