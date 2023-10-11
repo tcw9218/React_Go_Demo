@@ -2,6 +2,7 @@ package routes
 
 import (
 	"application/controllers"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,4 +14,5 @@ func Setup(router *gin.Engine) {
 	router.POST("/api/register", controllers.Register)
 	router.POST("/api/login", controllers.Login)
 	router.GET("/api/user", controllers.User)
+	router.POST("/api/logout", controllers.Logout)
 }
