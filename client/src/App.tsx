@@ -1,12 +1,10 @@
 // import { useState } from 'react'
 // import useSWR from 'swr'
-import Nav from './components/Nav'
-import Bikes from './pages/Bikes'
-import { PopoularProducts } from '@/pages/PopularProducts'
-import { CustomerReviews } from '@/pages/CustomerReviews'
-import { Offer } from "@/pages/Offer"
-import { Subscribe } from './pages/Subscribe'
-import { Footer } from './pages/Footer'
+
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+
+
 // import { Box } from '@mantine/core'
 // import { AddTodo } from './pages/AddTodo'
 export const ENDPOINT = 'http://localhost:3000'
@@ -19,33 +17,9 @@ const App = () => {
 	// if (error) return <div>error</div>
 	// if (isLoading) return <div>isLoading</div>
 	return (
-		<main className='relative'>
-			<Nav />
-			<section className='xl:padding-l wide:padding-r padding-b'>
-				<Bikes />
-			</section>
-			<section className='padding'>
-  			<PopoularProducts />
-			</section>
-			<section className='padding'>
-      			<Offer />
-			</section>
-			<section className='bg-pale-blue padding'>
-      			<CustomerReviews />
-			</section>
-			<section className='padding-x sm:py-32  py-16 w-full'>
-      			<Subscribe />
-			</section>
-			<section className='bg-black padding-x padding-t pb-8'>
-      			<Footer />
-			</section>
-
-			{/* <Box>
-      {JSON.stringify(data)}
-
-      <AddTodo/>
-    </Box> */}
-		</main>
+		<Routes>
+			<Route path="/" element={<Home/>}/>
+		</Routes>
 	)
 }
 

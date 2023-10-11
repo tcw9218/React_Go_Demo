@@ -12,7 +12,7 @@ func main() {
 	database.Connect()
 	engine := gin.Default()
 	config := cors.Config{
-		AllowOrigins:     []string{"http://localhost:4000"},
+		AllowOrigins:     []string{"http://localhost:3000"},
 		AllowMethods:     []string{"PUT", "PATCH"},
 		AllowHeaders:     []string{"Origin, Content-Type, Accept"},
 		ExposeHeaders:    []string{"Content-Length"},
