@@ -1,15 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import { ProductRoutes } from './components/ProductRoutes';
-import { User } from './pages/User';
+import { Login } from './pages/Login';
+import Nav from './components/Nav';
+import { Register } from './pages/Register';
 const App = () => {
 	return (
-
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/products/*" element={<ProductRoutes />} />
-			<Route path="/user" element={<User />} />
-		</Routes>
+		<>
+			<Nav />
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/products/*" element={<ProductRoutes />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+			</Routes>
+		</>
 
 	)
 }

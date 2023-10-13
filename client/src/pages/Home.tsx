@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav"
 import Bikes from "./Bikes"
 import { PopoularProducts } from "./PopularProducts"
 import { Offer } from "./Offer"
@@ -17,7 +16,7 @@ const Home: React.FC = () => {
 	// if (isLoading) return <div>isLoading</div>
 	return (
 		<main className='relative'>
-			<Nav />
+
 			<section className='xl:padding-l wide:padding-r padding-b'>
 				<Bikes />
 			</section>
