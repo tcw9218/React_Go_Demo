@@ -5,8 +5,16 @@ import { Offer } from "./Offer"
 import { CustomerReviews } from "./CustomerReviews"
 import { Footer } from "./Footer"
 import { Subscribe } from "./Subscribe"
+// import { Box } from '@mantine/core'
+// import { AddTodo } from './pages/AddTodo'
+// export const ENDPOINT = 'http://localhost:3000'
 
+// const fetcher = async (url: string) => await fetch(`${ENDPOINT}/${url}`).then(async (r) => await r.json())
 const Home: React.FC = () => {
+	// const {data, isLoading, error} = useSWR('todos', fetcher)
+
+	// if (error) return <div>error</div>
+	// if (isLoading) return <div>isLoading</div>
 	return (
 		<main className='relative'>
 			<Nav />

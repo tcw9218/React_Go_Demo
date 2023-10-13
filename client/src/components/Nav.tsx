@@ -1,12 +1,12 @@
 import { headerLogo } from '../assets/images'
 import { hamburger } from '../assets/icons'
 import { navLinks } from '../constants'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Nav: React.FC = () => {
-	// const navigate = useNavigate();
-	// const handleClick = (url: string) => {
-	// 	navigate(url)
-	// }
+	const navigate = useNavigate();
+	const handleClick = (url: string) => {
+		navigate(url)
+	}
 	return (
     	<header className='padding-x py-8 absolute z-10 w-full  '>
 			<nav className='flex justify-between items-center max-container'>
@@ -23,6 +23,7 @@ const Nav: React.FC = () => {
 							 <a
 								href={item.href}
 								className="font-montserrat leading-normal text-lg text-slate-gray"
+								onClick = {() => handleClick(item.href)}
 							>
 								{item.label}
 
