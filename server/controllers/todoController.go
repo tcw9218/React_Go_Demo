@@ -139,7 +139,13 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie("jwt", ss, 3600*24, "/", "localhost", true, true)
+	c.SetCookie("jwt1", ss, 3600*3, "/", "loclahost", false, false)
+	fmt.Println("Response Headers:")
+	for key, values := range c.Writer.Header() {
+		for _, value := range values {
+			fmt.Printf("%s: %s\n", key, value)
+		}
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success",
 	})
@@ -148,7 +154,7 @@ func Login(c *gin.Context) {
 func User(c *gin.Context) {
 	cookie, err := c.Cookie("jwt")
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "No Cookie Exist"})
 		c.Abort()
 		return
 	}

@@ -11,11 +11,12 @@ import (
 func main() {
 	database.Connect()
 	engine := gin.Default()
+
 	config := cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
-		AllowMethods:     []string{"PUT", "PATCH"},
-		AllowHeaders:     []string{"Origin, Content-Type, Accept"},
-		ExposeHeaders:    []string{"Content-Length"},
+		AllowOrigins: []string{"http://localhost:3000", "http://localhost", "http://127.0.0.1:3000", "http://127.0.0.1"},
+		AllowMethods: []string{"PUT", "PATCH"},
+		AllowHeaders: []string{"Origin, Content-Type, Accept"},
+		// ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}
 	engine.SetTrustedProxies(nil)
