@@ -19,6 +19,8 @@ export const Register = () => {
 				email,
 				password
 			})
+		}).then(res => {
+			console.log("register HEADER", res.headers)
 		})
 		// const content = await res.json()
 		navigate('/login',{ replace:true })

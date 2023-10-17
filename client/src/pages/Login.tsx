@@ -1,10 +1,19 @@
 import { SyntheticEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
+type loginResp = {
+	user: string,
+	token: string
+}
 export const  Login = () => {
 	const navigate = useNavigate()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const storeAuthentication = (user: string,token: string) => {
+		localStorage.setItem("user", user)
+		localStorage.setItem("jwt",token)
+	}
 
 	const submit = async (e: SyntheticEvent) => {
 		e.preventDefault()
@@ -17,10 +26,12 @@ export const  Login = () => {
 				email,
 				password
 			})
-		})
-			.then(res => {
-				console.log(res.json())
-			})
+		}).then(async (res) => {
+			const data: loginResp = await res.json()
+
+			// localStorage.setItem("jwt",token)
+			storeAuthentication(data.user, data.token)
+		}).catch(e => console.log(e))
 
 		navigate('/',{ replace:true })
 	}

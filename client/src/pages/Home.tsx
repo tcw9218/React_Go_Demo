@@ -4,7 +4,7 @@ import { Offer } from "./Offer"
 import { CustomerReviews } from "./CustomerReviews"
 import { Footer } from "./Footer"
 import { Subscribe } from "./Subscribe"
-// import { useEffect } from "react"
+import { useEffect } from "react"
 // import { Box } from '@mantine/core'
 // import { AddTodo } from './pages/AddTodo'
 // export const ENDPOINT = 'http://localhost:3000'
@@ -12,13 +12,13 @@ import { Subscribe } from "./Subscribe"
 // const fetcher = async (url: string) => await fetch(`${ENDPOINT}/${url}`).then(async (r) => await r.json())
 const Home: React.FC = () => {
 	// const {data, isLoading, error} = useSWR('todos', fetcher)
-	// useEffect( () => {
-	// 	fetch('http://localhost:8000/api/user', {
-
-	// 		headers: { 'Content-Type':'application/json' },
-	// 		credentials: 'include',
-	// 	}).then(res => console.log(res.json()))
-	// },[])
+	useEffect( () => {
+		fetch('http://localhost:8000/api/user', {
+			headers: {
+				'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+				'Content-Type':'application/json' },
+		}).then(res => console.log(res.json()))
+	},[])
 	return (
 		<main className='relative'>
 

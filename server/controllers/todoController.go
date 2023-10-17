@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"golang.org/x/crypto/bcrypt"
@@ -82,9 +83,10 @@ func getTodoById(id int) (*Todo, error) {
 	return nil, errors.New("no specfic todo ID")
 }
 
-const mySigningKey = "SecretJwtKey"
+const MYSIGNKEY = "SecretJwtKey"
 
 func Register(c *gin.Context) {
+	printRespHeaders(c)
 	var data map[string]string
 
 	if err := c.ShouldBindJSON(&data); err != nil {
@@ -102,6 +104,9 @@ func Register(c *gin.Context) {
 		Password: password,
 	}
 	database.DB.Create(&user)
+
+	printRespHeaders(c)
+
 	c.JSON(http.StatusOK, user)
 }
 
@@ -130,42 +135,49 @@ func Login(c *gin.Context) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id": user.ID,
 		"iat":     time.Now(),
-		"exp":     time.Now().Add(time.Hour * 24).Unix(),
+		"exp":     time.Now().Add(time.Hour * 8).Unix(),
 	})
 
-	ss, err := token.SignedString([]byte(mySigningKey))
+	ss, err := token.SignedString([]byte(MYSIGNKEY))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, "could not logiin")
 		return
 	}
 
-	c.SetCookie("jwt1", ss, 3600*3, "/", "loclahost", false, false)
-	fmt.Println("Response Headers:")
-	for key, values := range c.Writer.Header() {
-		for _, value := range values {
-			fmt.Printf("%s: %s\n", key, value)
-		}
-	}
+	c.SetCookie("jwt", ss, 3600*3, "/", "localhost", false, true)
+
 	c.JSON(http.StatusOK, gin.H{
+		"user":    user.ID,
+		"token":   ss,
 		"message": "success",
 	})
 }
 
 func User(c *gin.Context) {
-	cookie, err := c.Cookie("jwt")
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "No Cookie Exist"})
-		c.Abort()
+	authorizationHeader := c.Request.Header["Authorization"]
+	// fmt.Println("Badads", authorizationHeader[0])
+	if authorizationHeader == nil {
+		c.JSON(http.StatusInternalServerError, "No Authenticationo Header")
 		return
 	}
+	fmt.Println("DEBUG")
+	array := strings.Split(authorizationHeader[0], " ")
+	fmt.Println("DEBUG2")
+	if array[0] != "Bearer" {
+		fmt.Println("Bearer", array[0])
+		c.JSON(http.StatusInternalServerError, "Bearer not exist")
+		return
+	}
+	fmt.Println("DEBUG3")
+	fmt.Println("token", authorizationHeader)
 
-	token, err := jwt.Parse(cookie, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.Parse(array[1], func(token *jwt.Token) (interface{}, error) {
 		// Check the signing method, which should match the one used during token creation.
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method")
 		}
 
-		return []byte(mySigningKey), nil
+		return []byte(MYSIGNKEY), nil
 	})
 
 	if err != nil {
@@ -186,10 +198,22 @@ func User(c *gin.Context) {
 		c.Abort()
 		return
 	}
+
+	printRespHeaders(c)
+
 	c.JSON(http.StatusOK, user)
 }
 
 func Logout(c *gin.Context) {
-	c.SetCookie("jwt", "", -1, "/", "localhost", true, true)
+	c.SetCookie("jwt", "", -1, "/", "localhost:3000", true, true)
 	c.JSON(http.StatusOK, gin.H{"message": "Logged out successfully"})
+}
+
+func printRespHeaders(c *gin.Context) {
+	fmt.Println("Response Headers:")
+	for key, values := range c.Writer.Header() {
+		for _, value := range values {
+			fmt.Printf("%s: %s\n", key, value)
+		}
+	}
 }
