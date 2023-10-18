@@ -50,10 +50,8 @@ const Bikes: React.FC = () => {
 								changeBigshoeImg = {(imgUrl: string) => {
 									setBigShoeImg(imgUrl)
 								}}
-
 								bigShoeImage={bigShoeImg}
 							/>
-
 						</div>
 					))}
 				</div>

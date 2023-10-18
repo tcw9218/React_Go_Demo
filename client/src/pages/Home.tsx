@@ -1,6 +1,5 @@
 import Bikes from "./Bikes"
 import { PopoularProducts } from "./PopularProducts"
-import { Offer } from "./Offer"
 import { CustomerReviews } from "./CustomerReviews"
 import { Footer } from "./Footer"
 import { Subscribe } from "./Subscribe"
@@ -19,6 +18,7 @@ const Home: React.FC = () => {
 				'Content-Type':'application/json' },
 		}).then(res => console.log(res.json()))
 	},[])
+
 	return (
 		<main className='relative'>
 
@@ -26,10 +26,7 @@ const Home: React.FC = () => {
 				<Bikes />
 			</section>
 			<section className='padding'>
-  			<PopoularProducts />
-			</section>
-			<section className='padding'>
-      			<Offer />
+  				<PopoularProducts />
 			</section>
 			<section className='bg-pale-blue padding'>
       			<CustomerReviews />

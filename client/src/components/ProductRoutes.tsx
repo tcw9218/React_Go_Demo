@@ -1,12 +1,11 @@
 import { Product } from "@/pages/Product"
 import { ProductList } from "@/pages/ProductList"
 import { Route, Routes } from "react-router-dom"
-import { ProductLayout } from "./ProductLayout"
 
 export const ProductRoutes = () => {
 	return(
 		<>
-			<ProductLayout />
+			{/* <ProductLayout /> */}
 			<Routes>
 				<Route index element={<ProductList />} />
 				<Route path=":id" element={<Product />} />

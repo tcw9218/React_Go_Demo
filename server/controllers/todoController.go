@@ -181,7 +181,10 @@ func User(c *gin.Context) {
 	})
 
 	if err != nil {
+		fmt.Println("Token Expired")
 		c.JSON(http.StatusUnauthorized, "Token Expired")
+		c.Abort()
+		return
 	}
 
 	// Check if the token is valid.
@@ -193,8 +196,7 @@ func User(c *gin.Context) {
 		database.DB.Where("id = ?", claims["user_id"]).First(&user)
 
 	} else {
-		fmt.Println("ok", ok)
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token Invalid"})
 		c.Abort()
 		return
 	}

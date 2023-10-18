@@ -123,3 +123,28 @@ export const socialMedia = [
 	{ src: twitter, alt: 'twitter logo' },
 	{ src: instagram, alt: 'instagram logo' }
 ]
+
+export const bikeProduct = [
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BMT31566_PH_1.jpg?width=1200&v=1697491905",
+		name: "Mountain Ebike MEdium",
+		price: "2299" },
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BGR14067_PH_1.jpg?width=1200&v=1692127580",
+		name: "Moots Routt 45",
+		price: "5999.89" },
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BMT31562_PH_1.jpg?width=1200&v=1697491897",
+		name: "Sklar Gravel Custom",
+		price: "3499.89" },
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BRD33507_PH_1.jpg?width=1200&v=1697491922",
+		name: "Trek Checkpoint SL",
+		price: "4249.99" },
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BRD32594_PH_1.jpg?width=1200&v=1692892976",
+		name: "Colnago G3-X",
+		price: "4999.99" },
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BRD32458_PH_1.jpg?width=1200&v=1687449947",
+		name: "Bombtrack Hook EXT",
+		price: "2049.99" },
+	{ imgURL: "https://cdn.shopify.com/s/files/1/2318/5263/files/BMT31502_PH_1.jpg?width=1200&v=1696022228",
+		name: "Niner RLT",
+		price: "2699.99" },
+]
+
