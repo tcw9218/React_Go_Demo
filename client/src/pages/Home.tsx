@@ -1,8 +1,7 @@
 import Bikes from "./Bikes"
-import { PopoularProducts } from "./PopularProducts"
-import { CustomerReviews } from "./CustomerReviews"
-import { Footer } from "./Footer"
-import { Subscribe } from "./Subscribe"
+import { CustomerReviews } from "../components/CustomerReviews"
+import { Footer } from "../components/Footer"
+import { Subscribe } from "../components/Subscribe"
 import { useEffect } from "react"
 // import { Box } from '@mantine/core'
 // import { AddTodo } from './pages/AddTodo'
@@ -20,18 +19,15 @@ const Home: React.FC = () => {
 	},[])
 
 	return (
-		<main className='relative'>
+		<main className='relative bg-secondary-default'>
 
-			<section className='xl:padding-l wide:padding-r padding-b'>
+			<section className=''>
 				<Bikes />
-			</section>
-			<section className='padding'>
-  				<PopoularProducts />
 			</section>
 			<section className='bg-pale-blue padding'>
       			<CustomerReviews />
 			</section>
-			<section className='padding-x sm:py-32  py-16 w-full'>
+			<section className=' sm:py-32  py-16 w-full'>
       			<Subscribe />
 			</section>
 			<section className='bg-black padding-x padding-t pb-8'>

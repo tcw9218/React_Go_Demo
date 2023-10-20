@@ -1,3 +1,4 @@
+import colors from "tailwindcss/colors"
 export default {
 	content: [
 		"./index.html",
@@ -25,7 +26,15 @@ export default {
 				"coral-red": "#FF6452",
 				"slate-gray": "#6D6D6D",
 				"pale-blue": "#F5F6FF",
-				"white-400": "rgba(255, 255, 255, 0.80)"
+				"white-400": "rgba(255, 255, 255, 0.80)",
+				secondary: {
+					default: colors.neutral[200],
+					hover: colors.neutral[300],
+					border: colors.neutral[400],
+					text: colors.neutral[500],
+					dark: colors.neutral[800],
+					["dark-hover"]: colors.neutral[900],
+				}
 			},
 			boxShadow: {
 				'3xl': '0 10px 40px rgba(0, 0, 0, 0.1)'

@@ -1,12 +1,10 @@
 import { facebook, instagram, shieldTick, support, truckFast, twitter } from '../assets/icons'
-import { bigShoe1, bigShoe2, bigShoe3, customer1, customer2, shoe4, shoe5, shoe6, shoe7, thumbnailShoe1, thumbnailShoe2, thumbnailShoe3 } from '../assets/images'
+import { bigShoe1, bigShoe2, bigShoe3, bike1, bike2, bike3, customer1, customer2, thumbnailShoe1, thumbnailShoe2, thumbnailShoe3 } from '../assets/images'
 
 export const navLinks = [
 	{ href: '/', label: 'Home' },
-	{ href: '/about-us', label: 'About Us' },
 	{ href: '/products', label: 'Products' },
-	{ href: '/contact-us', label: 'Contact Us' },
-	{ href: '/login', label: 'Account' }
+	{ href: '/login', label: 'login' }
 ]
 
 export const shoes = [
@@ -23,6 +21,20 @@ export const shoes = [
 		bigShoe: bigShoe3
 	}
 ]
+export const bikes = [
+	{
+		thumbnail: thumbnailShoe1,
+		bigBike: bigShoe1
+	},
+	{
+		thumbnail: thumbnailShoe2,
+		bigBike: bike2
+	},
+	{
+		thumbnail: thumbnailShoe3,
+		bigBike: bike3
+	}
+]
 
 export const statistics = [
 	{ value: '1k+', label: 'Brands' },
@@ -30,29 +42,6 @@ export const statistics = [
 	{ value: '250k+', label: 'Customers' }
 ]
 
-
-export const products = [
-	{
-		imgURL: shoe4,
-		name: 'Nike Air Jordan-01',
-		price: '$200.20'
-	},
-	{
-		imgURL: shoe5,
-		name: 'Nike Air Jordan-10',
-		price: '$210.20'
-	},
-	{
-		imgURL: shoe6,
-		name: 'Nike Air Jordan-100',
-		price: '$220.20'
-	},
-	{
-		imgURL: shoe7,
-		name: 'Nike Air Jordan-001',
-		price: '$230.20'
-	}
-]
 
 export const services = [
 	{
@@ -88,17 +77,6 @@ export const reviews = [
 ]
 
 export const footerLinks = [
-	{
-		title: 'Products',
-		links: [
-			{ name: 'Air Force 1', link: '/' },
-			{ name: 'Air Max 1', link: '/' },
-			{ name: 'Air Jordan 1', link: '/' },
-			{ name: 'Air Force 2', link: '/' },
-			{ name: 'Nike Waffle Racer', link: '/' },
-			{ name: 'Nike Cortez', link: '/' }
-		]
-	},
 	{
 		title: 'Help',
 		links: [

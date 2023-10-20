@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { TsignInSchema, signInSchema } from "../../lib/types"
+import { TsignInSchema, signInSchema } from "../../common/types"
 
 type loginResp = {
 	user: string,
@@ -13,9 +13,8 @@ export const  LoginReactHook = () => {
 	const {
 		register,
 		handleSubmit,
-		formState : { errors, isSubmitting, },
+		formState : { errors, isSubmitting },
 		reset,
-		setError
 	} = useForm<TsignInSchema>({
 		resolver: zodResolver(signInSchema)
 	}
@@ -42,32 +41,17 @@ export const  LoginReactHook = () => {
 			return
 		}
 		const responseData: loginResp = await resp.json()
-		// if (responseData.errors) {
-		// 	const errors = responseData.errors
-		// 	if(errors.email) {
-		// 		setError("email",{
-		// 			type: "server",
-		// 			message: errors.email
-		// 		})
-		// 	}else if (errors.password) {
-		// 		setError("password",{
-		// 			type: "server",
-		// 			message: errors.password
-		// 		})
-		// 	}
-
-		// }
 		storeAuthentication(responseData.user, responseData.token)
-		// reset()
+		reset()
 		navigate('/',{ replace:true })
 	}
 	return (
 		<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-		  		<div className="sm:mx-auto sm:w-full sm:max-w-sm">
+		  	<div className="sm:mx-auto sm:w-full sm:max-w-sm">
 				<h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-			  			Sign in to your account
+							Sign in to your account
 				</h2>
-		  		</div>
+		  	</div>
 
 			<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 				<form onSubmit={ handleSubmit( onSubmit) } className="space-y-6">

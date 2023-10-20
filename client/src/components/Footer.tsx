@@ -1,5 +1,4 @@
 import { copyrightSign } from "@/assets/icons"
-import { footerLogo } from "@/assets/images"
 import { footerLinks, socialMedia } from "@/constants"
 
 export const Footer = () => {
@@ -7,16 +6,9 @@ export const Footer = () => {
 		<footer className="max-container ">
 			<div className="flex justify-between items-start gap-20 flex-wrap max-lg:flex-col">
 				<div className="flex flex-col items-start">
-					<a href="/">
-						<img
-							src={footerLogo	}
-							width={150}
-							height={46}
-						/>
-					</a>
 					<div className="flex items-center gap-5 mt-8">
 						{socialMedia.map((icon, index) => (
-							<div 	className="flex justify-center items-center w-12 h-12 bg-white rounded-full" key={index}>
+							<div className="flex justify-center items-center w-12 h-12 bg-white rounded-full" key={index}>
 								<img
 									src={icon.src}
 									alt={icon.alt}

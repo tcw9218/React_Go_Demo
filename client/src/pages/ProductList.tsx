@@ -12,7 +12,7 @@ export const ProductList = () => {
   	const handleClose = () => setOpen(false);
 	return (
 		<div className="w-full max-lg:flex-col p-2 max-container lg:flex pt-28 gap-10">
-			<div className="sticky flex xl:basis-1/5 max-lg:hidden">
+			<div className="sticky top-0 flex xl:basis-1/5 max-lg:hidden">
 				<ProductFilterSelect />
 			</div>
 			<div className="px-4 flex justify-between lg:hidden mb-8">
