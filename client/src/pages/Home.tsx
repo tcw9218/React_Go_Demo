@@ -19,12 +19,11 @@ const Home: React.FC = () => {
 	},[])
 
 	return (
-		<main className='relative bg-secondary-default'>
-
-			<section className=''>
+		<main >
+			<section>
 				<Bikes />
 			</section>
-			<section className='bg-pale-blue padding'>
+			<section className=' bg-secondary-hover padding'>
       			<CustomerReviews />
 			</section>
 			<section className=' sm:py-32  py-16 w-full'>

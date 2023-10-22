@@ -5,7 +5,7 @@ export const CustomerReviews = () => {
 		<section className="max-container">
 			<h3 className=" text-4xl font-bold text-center">
 				What Our
-				<span className="text-coral-red "> Customers </span>
+				<span className="text-secondary-hover "> Customers </span>
 				Say?
 			</h3>
 			<p className="text-center mt-4 m-auto max-w-lg">

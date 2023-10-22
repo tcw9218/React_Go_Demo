@@ -28,6 +28,7 @@ export default {
 				"pale-blue": "#F5F6FF",
 				"white-400": "rgba(255, 255, 255, 0.80)",
 				secondary: {
+					back: colors.neutral[100],
 					default: colors.neutral[200],
 					hover: colors.neutral[300],
 					border: colors.neutral[400],

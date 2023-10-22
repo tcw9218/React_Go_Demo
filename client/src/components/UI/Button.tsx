@@ -4,13 +4,13 @@ type ButtonProps = {
 	label: string
 	iconURL?: string
 	borderColor?: string
-	widthFull?: boolean
 } & ComponentProps<"button">
 
-export const Button = ({ label, borderColor, widthFull, className, ...props }: ButtonProps) => {
+export const Button = ({ label, borderColor, className, ...props }: ButtonProps) => {
 	return (
-		<button {...props} className={twMerge(` text-slate-50 flex justify-center items-center px-6 py-2 border rounded-full ${widthFull && 'w-full'} leading-none
-		${borderColor ? `${borderColor}` : 'bg-secondary-text'}`,className)}
+		<button {...props} className={twMerge(` text-secondary-default flex justify-center items-center px-6 py-2 border
+									rounded-full leading-none hover:bg-secondary-dark-hover
+									${borderColor ? `${borderColor}` : 'bg-secondary-text'}`,className)}
 		>
 			{label}
 
