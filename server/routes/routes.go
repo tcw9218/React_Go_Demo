@@ -7,6 +7,7 @@ import (
 )
 
 func Setup(router *gin.Engine) {
+	router.GET("/", controllers.Test)
 	router.GET("/todos", controllers.GetTodos)
 	router.GET("/todos/:id", controllers.GetTodo)
 	router.POST("/todos/:id/done", controllers.CompleteTodo)

@@ -219,3 +219,7 @@ func printRespHeaders(c *gin.Context) {
 		}
 	}
 }
+
+func Test(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, "HelloApp Testing")
+}
